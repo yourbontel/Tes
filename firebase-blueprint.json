@@ -1,0 +1,157 @@
+{
+  "entities": {
+    "StudentGradeRecord": {
+      "title": "StudentGradeRecord",
+      "description": "Data nilai santri untuk 5 mata pelajaran pokok: Nahwu, Shorof, Durusul Lughah, Hadis, dan Adab.",
+      "type": "object",
+      "properties": {
+        "studentName": {
+          "type": "string",
+          "description": "Nama lengkap santri atau siswa.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "nis": {
+          "type": "string",
+          "description": "Nomor Induk Santri (NIS).",
+          "minLength": 1,
+          "maxLength": 30,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "halaqah": {
+          "type": "string",
+          "description": "Nama kelas atau halaqah santri.",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "semester": {
+          "type": "string",
+          "description": "Periode semester akademik.",
+          "minLength": 1,
+          "maxLength": 40,
+          "enum": [
+            "Ganjil 1447 H",
+            "Genap 1447 H",
+            "Ganjil 1448 H",
+            "Genap 1448 H"
+          ]
+        },
+        "kategoriPenilaian": {
+          "type": "string",
+          "description": "Kategori evaluasi atau ujian.",
+          "minLength": 1,
+          "maxLength": 40,
+          "enum": [
+            "Ujian Akhir (UAS)",
+            "Ujian Tengah (UTS)",
+            "Ikhtibar Syahri",
+            "Rekap Semester"
+          ]
+        },
+        "nahwu": {
+          "type": "number",
+          "description": "Nilai mata pelajaran Nahwu (0-100)."
+        },
+        "shorof": {
+          "type": "number",
+          "description": "Nilai mata pelajaran Shorof (0-100)."
+        },
+        "durusulLughah": {
+          "type": "number",
+          "description": "Nilai mata pelajaran Durusul Lughah (0-100)."
+        },
+        "hadis": {
+          "type": "number",
+          "description": "Nilai mata pelajaran Hadis (0-100)."
+        },
+        "adab": {
+          "type": "number",
+          "description": "Nilai mata pelajaran Adab (0-100)."
+        },
+        "catatanUstadz": {
+          "type": "string",
+          "description": "Catatan evaluasi perkembangan santri dari pengajar.",
+          "minLength": 0,
+          "maxLength": 500
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "UID pengajar/ustadz yang menginput data.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerName": {
+          "type": "string",
+          "description": "Nama pengajar/ustadz yang menginput data.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Waktu pembuatan dokumen."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Waktu pembaruan terakhir dokumen."
+        }
+      },
+      "required": [
+        "studentName",
+        "nis",
+        "halaqah",
+        "semester",
+        "kategoriPenilaian",
+        "nahwu",
+        "shorof",
+        "durusulLughah",
+        "hadis",
+        "adab",
+        "catatanUstadz",
+        "ownerId",
+        "ownerName",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminRole": {
+      "title": "AdminRole",
+      "description": "Dokumen penanda hak akses administrator sistem.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "UID administrator.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "role": {
+          "type": "string",
+          "description": "Peran pengguna (admin).",
+          "minLength": 5,
+          "maxLength": 5,
+          "enum": ["admin"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Waktu pembuatan dokumen admin."
+        }
+      },
+      "required": ["uid", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/gradeRecords/{recordId}": {
+      "schema": { "$ref": "#/entities/StudentGradeRecord" },
+      "description": "Koleksi data pengumpulan nilai santri untuk Nahwu, Shorof, Durusul Lughah, Hadis, dan Adab."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRole" },
+      "description": "Koleksi administrator yang dikelola sistem."
+    }
+  }
+}

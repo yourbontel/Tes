@@ -1,0 +1,6 @@
+{
+  "name": "Al-Qalam — Sistem Pengumpulan Nilai Diniyah",
+  "description": "Aplikasi pengelolaan dan rekapitulasi nilai mata pelajaran Nahwu, Shorof, Durusul Lughah, Hadis, dan Adab untuk santri dan lembaga pendidikan Islam.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
